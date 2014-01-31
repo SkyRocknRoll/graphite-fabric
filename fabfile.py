@@ -45,6 +45,7 @@ def graphite_install():
     sudo('apt-get install -y python-dev python-setuptools libxml2-dev libpng12-dev pkg-config build-essential supervisor make python g++ git-core')
     sudo('easy_install pip')
     sudo('pip install simplejson') # required for django admin
+    sudo('pip install Twisted==11.1.0')
     sudo('pip install carbon')
     sudo('pip install whisper')
     sudo('pip install django==1.5.2')
@@ -123,6 +124,7 @@ def graphite_install():
     with cd('/opt/graphite/conf/'):
         sudo('cp carbon.conf.example carbon.conf')
         sudo('cp storage-schemas.conf.example storage-schemas.conf')
+        sudo('cp graphTemplates.conf.example graphTemplates.conf')
     # clearing old carbon log files
     put(conf_file('carbon-logrotate'), '/etc/cron.daily/', use_sudo=True, mode=0755)
 
